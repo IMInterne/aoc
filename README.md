@@ -1,2 +1,2 @@
 # aoc
-Solutions for Advent Of Code puzzles
+Solutions for Advent Of Code puzzles in Python 3
