@@ -1,12 +1,5 @@
 import pathlib
 
-def count_chars(string, char_):
-    count = 0
-    for c in string:
-        if c == char_:
-            count += 1
-    return count
-
 
 if __name__ == '__main__':
     input_file = pathlib.Path('input.txt')
