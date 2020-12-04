@@ -11,7 +11,7 @@ def product_of_sum_that_equals(s, numbers, n):
 
 
 if __name__ == '__main__':
-    input_file = pathlib.Path('input_kev.txt')
+    input_file = pathlib.Path('input.txt')
     with input_file.open() as f:
         numbers = [int(n) for n in f]
     product_of_sum_that_equals(2020, numbers, 2)
