@@ -6,11 +6,7 @@ def solve(right, down):
     i = 0
     trees = 0
     for line in data[::down]:
-        try:
-            line[i]
-        except IndexError:
-            i = i % len(line)
-        if line[i] == '#':
+        if line[i % len(line)] == '#':
             trees += 1
         i += right
     return trees
