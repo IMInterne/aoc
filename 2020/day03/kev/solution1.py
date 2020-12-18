@@ -1,7 +1,4 @@
-import collections.abc
-
-
-class RepeatableRow(collections.abc.Sequence):
+class RepeatableRow:
     def __init__(self, row, repeat=100):
         self.row = row
         self.repeat = repeat
@@ -13,7 +10,7 @@ class RepeatableRow(collections.abc.Sequence):
         return len(self.row) * self.repeat
 
 
-class Slope(collections.abc.Sequence):
+class Slope:
     def __init__(self, map_, right, down):
         self.map = map_
         self.right = right

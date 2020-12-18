@@ -1,6 +1,42 @@
+import re
+
+
+required_fields = {
+        "byr",
+        "iyr",
+        "eyr",
+        "hgt",
+        "hcl",
+        "ecl",
+        "pid",
+    }
+
+
+def is_valid_hgt(hgt):
+    if "cm" in hgt:
+        return 150 <= int(hgt.strip("cm")) <= 193
+    if "in" in hgt:
+        return 59 <= int(hgt.strip("in")) <= 76
+
+
+def is_valid(passport):
+    if required_fields <= set(passport):
+        validation_tuple = (
+                1920 <= int(passport["byr"]) <= 2002,
+                2010 <= int(passport["iyr"]) <= 2020,
+                2020 <= int(passport["eyr"]) <= 2030,
+                is_valid_hgt(passport["hgt"]),
+                re.fullmatch("#[0-9a-z]{6}", passport["hcl"]),
+                passport["ecl"] in {"amb", "blu", "brn", "gry", "grn", "hzl", "oth"},
+                re.fullmatch("\d{9}", passport["pid"])
+            )
+        print(validation_tuple)
+        return all(validation_tuple)
+    return False
+
 
 if __name__ == '__main__':
-    with open("input_test.txt") as f:
+    with open("input.txt") as f:
         passports = f.read().split("\n\n")
     passport_dicts = []
     for passport_str in passports:
@@ -20,4 +56,4 @@ if __name__ == '__main__':
         "ecl",
         "pid",
     }
-    print(sum((not (required_fields - set(passport)) for passport in passport_dicts)))
+    print(sum(is_valid(passport) for passport in passport_dicts))
